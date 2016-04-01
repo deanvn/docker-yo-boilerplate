@@ -1,15 +1,25 @@
+## Docker Yeoman Boilerplate
 
-## Boilerplate
+### Usage
 
-Inspect your environment
-docker run -it -p 9000:9000 -p 35729:35729 -d -v $(pwd)/app:/src/app deanvn/docker-web-app 
+Inspect your containers environment
+`docker run -it -p 9000:9000 -p 35729:35729 -d -v $(pwd)/app:/src/app <username>/yo-web-app`
 
-Gulp Serve
-docker run -it -p 9000:9000 -p 35729:35729 -d -v $(pwd)/app:/src/app deanvn/docker-web-app gulp serve
-docker run -it -p 9000:9000 -p 35729:35729 -d -v $(pwd)/app:/src/app --name <your-app-name> deanvn/docker-web-app gulp serve
+#### Development
 
-Need to run an additional command in the running container like gulp assemble:
-docker exec -it docker-web-app gulp assemble
+Develop on an existing yeoman project or by customizing this boilerplate
 
-Or run a bash shell in the running container
-docker exec -it docker-web-app /bin/bash 
+`docker run -it -p 9000:9000 -p 35729:35729 -d -v $(pwd)/app:/src/app --name yo-web-app <username>/yo-web-app gulp serve`
+
+Added an new template file to your code? Run gulp assemble in the container:
+`docker exec -it yo-web-app gulp assemble`
+
+#### Build
+
+Build a Distribution
+`docker run -it --rm -v $(pwd)/app:/src/app -v $(pwd)/dist:/src/dist <username>/yo-web-app gulp build`
+
+#### Troubleshooting
+Troubleshooting or need to run another command in the shell of the running container
+`docker exec -it yo-web-app /bin/bash`
+
